@@ -551,18 +551,7 @@ with tab1:
                 "Gün %":r['d_change'],"Hafta %":r['w_change'],
             } for r in filtered])
 
-            def csig(v):
-                if "GÜÇLÜ AL" in str(v): return "color:#00e676;font-weight:bold"
-                if "AL" in str(v): return "color:#40c4ff"
-                if "GÜÇLÜ SAT" in str(v): return "color:#ff1744;font-weight:bold"
-                if "SAT" in str(v): return "color:#ff6d00"
-                return "color:#90a4ae"
-
-            try:
-                styled = df_show.style.map(csig, subset=["Sinyal"])
-            except AttributeError:
-                styled = df_show.style.applymap(csig, subset=["Sinyal"])
-            st.dataframe(styled, use_container_width=True, height=480)
+            st.dataframe(df_show, use_container_width=True, height=480)
         else:
             st.info("⚡ HIZLI TARA'ya bas — ~1 dakikada sonuç alırsın.")
 
