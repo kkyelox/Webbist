@@ -558,8 +558,11 @@ with tab1:
                 if "SAT" in str(v): return "color:#ff6d00"
                 return "color:#90a4ae"
 
-            st.dataframe(df_show.style.applymap(csig,subset=["Sinyal"]),
-                         use_container_width=True,height=480)
+            try:
+                styled = df_show.style.map(csig, subset=["Sinyal"])
+            except AttributeError:
+                styled = df_show.style.applymap(csig, subset=["Sinyal"])
+            st.dataframe(styled, use_container_width=True, height=480)
         else:
             st.info("⚡ HIZLI TARA'ya bas — ~1 dakikada sonuç alırsın.")
 
